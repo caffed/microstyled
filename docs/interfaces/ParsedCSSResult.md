@@ -1,4 +1,4 @@
-[microstyled](../README.md) / [Exports](../modules.md) / ParsedCSSResult
+[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / ParsedCSSResult
 
 # Interface: ParsedCSSResult
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types.ts:26](https://github.com/caffed/microstyled/blob/134c245/src/types.ts#L26)
+[types.ts:26](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L26)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types.ts:27](https://github.com/caffed/microstyled/blob/134c245/src/types.ts#L27)
+[types.ts:27](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L27)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types.ts:28](https://github.com/caffed/microstyled/blob/134c245/src/types.ts#L28)
+[types.ts:28](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L28)

@@ -1,4 +1,4 @@
-[microstyled](../README.md) / [Exports](../modules.md) / StyledProps
+[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / StyledProps
 
 # Interface: StyledProps
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[types.ts:32](https://github.com/caffed/microstyled/blob/134c245/src/types.ts#L32)
+[types.ts:32](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L32)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[types.ts:31](https://github.com/caffed/microstyled/blob/134c245/src/types.ts#L31)
+[types.ts:31](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L31)

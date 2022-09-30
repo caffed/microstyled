@@ -1,4 +1,4 @@
-[microstyled](../README.md) / [Exports](../modules.md) / GenericComponentProps
+[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / GenericComponentProps
 
 # Interface: GenericComponentProps
 
@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[types.ts:23](https://github.com/caffed/microstyled/blob/134c245/src/types.ts#L23)
+[types.ts:23](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L23)

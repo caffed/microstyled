@@ -1,4 +1,4 @@
-microstyled / [Exports](modules.md)
+@caffedpkg/microstyled / [Exports](modules.md)
 
 <div style="width: 100%;" class="heading-container">
 	<img style="width: 100%;" alt="microstyled logo" src="./misc/microstyled.png">
@@ -37,7 +37,7 @@ microstyled / [Exports](modules.md)
   - Root level key/value pairs can be copied "as is" from normal CSS.
 
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	
 	// Regular key value CSS properties are written normally
 	const Parent = microstyled.div`
@@ -62,7 +62,7 @@ microstyled / [Exports](modules.md)
 - Psuedo class properties
 
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	
 	// The ampersand is used as a placeholder for the component class reference
 	const Child = microstyled.div`
@@ -93,7 +93,7 @@ microstyled / [Exports](modules.md)
 - Media query properties
 
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	
 	// Media queries can also be nested inside an elements block.
 	// NOTE: Currently, all nested styles must be enclosed in a "& { ... }" block.
@@ -135,7 +135,7 @@ microstyled / [Exports](modules.md)
 
 	```JSX
 	import React from 'react';
-	import microstyled, { ThemeProvider } from 'microstyled';
+	import microstyled, { ThemeProvider } from '@caffedpkg/microstyled';
 	
 	const myTheme = {
 	  desktop: {
@@ -177,7 +177,7 @@ microstyled / [Exports](modules.md)
 
 	```JSX
 	import React from 'react';
-	import microstyled, { StyleCacheProvider } from 'microstyled';
+	import microstyled, { StyleCacheProvider } from '@caffedpkg/microstyled';
 	
 	const StyleSheetCache = StyleCacheProvider(document.body.querySelector('#my-cache'));
 	
@@ -201,7 +201,7 @@ microstyled / [Exports](modules.md)
 
 	
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	import config from './config';
 	
 	// interpolation must

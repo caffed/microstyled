@@ -1,4 +1,4 @@
-[microstyled](../README.md) / [Exports](../modules.md) / BaseProps
+[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / BaseProps
 
 # Interface: BaseProps
 
@@ -18,4 +18,4 @@ INTERFACES
 
 #### Defined in
 
-[types.ts:20](https://github.com/caffed/microstyled/blob/134c245/src/types.ts#L20)
+[types.ts:20](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L20)

@@ -37,7 +37,7 @@
   - Root level key/value pairs can be copied "as is" from normal CSS.
 
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	
 	// Regular key value CSS properties are written normally
 	const Parent = microstyled.div`
@@ -64,7 +64,7 @@
 
 
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	
 	// The ampersand is used as a placeholder for the component class reference
 	const Child = microstyled.div`
@@ -95,7 +95,7 @@
 - Media query properties
 
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	
 	// Media queries can also be nested inside an elements block.
 	// NOTE: Currently, all nested styles must be enclosed in a "& { ... }" block.
@@ -137,7 +137,7 @@
 
 	```JSX
 	import React from 'react';
-	import microstyled, { ThemeProvider } from 'microstyled';
+	import microstyled, { ThemeProvider } from '@caffedpkg/microstyled';
 	
 	const myTheme = {
 	  desktop: {
@@ -180,7 +180,7 @@
 
 	```JSX
 	import React from 'react';
-	import microstyled, { StyleCacheProvider } from 'microstyled';
+	import microstyled, { StyleCacheProvider } from '@caffedpkg/microstyled';
 	
 	const StyleSheetCache = StyleCacheProvider(document.body.querySelector('#my-cache'));
 	
@@ -204,7 +204,7 @@
 
 	
 	```JSX
-	import microstyled from 'microstyled';
+	import microstyled from '@caffedpkg/microstyled';;
 	import config from './config';
 	
 	// interpolation must
