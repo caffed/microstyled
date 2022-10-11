@@ -1,4 +1,4 @@
-import type { InlineBlocks, ParsedCSSResult, TaggedFunctionStrings } from './types'
+import type { InlineBlocks, ParsedCSSResult, TaggedFunctionStrings } from './types';
 
 /**
  * Random String generator
@@ -10,23 +10,23 @@ import type { InlineBlocks, ParsedCSSResult, TaggedFunctionStrings } from './typ
 export const randomString = (length = 20, prefix = '', stripNumeric = true): string => {
   let str = Math.random()
     .toString(36)
-    .slice(2, 2 + length)
-  str = stripNumeric ? str.replace(/[0-9]/g, '') : str
+    .slice(2, 2 + length);
+  str = stripNumeric ? str.replace(/[0-9]/g, '') : str;
   if (str.length !== length) {
-    return randomString(length - str.length, prefix.concat(str), stripNumeric)
+    return randomString(length - str.length, prefix.concat(str), stripNumeric);
   }
-  return prefix.concat(str)
-}
+  return prefix.concat(str);
+};
 
 /**
  * mediaQueryRegex - matches `@ { ... }`
  */
-export const mediaQueryRegex = /(@)(.*?)(\}\s+\})/gm
+export const mediaQueryRegex = /(@media)(.*?)(\}\s+\})/gm;
 
 /**
  * psuedoClassRegex - matches `& { ... }`
  */
-export const psuedoClassRegex = /(&)(.*?)(\})/gm
+export const psuedoClassRegex = /(&)(.*?)(\})/gm;
 
 /**
  * interpolate: Tagged string function parser
@@ -38,19 +38,19 @@ export const psuedoClassRegex = /(&)(.*?)(\})/gm
 export const interpolate = (
   strings: TaggedFunctionStrings,
   values: InlineBlocks,
-  props: any = {},
+  props: Record<any, any> = {},
 ): string => {
   return strings.reduce((prev: string, curr: string, idx: number) => {
-    const value = values[idx]
-    let evaluated = ''
+    const value = values[idx];
+    let evaluated = '';
     if (typeof value === 'function') {
-      evaluated = value(props) ?? ''
+      evaluated = value(props) ?? '';
     } else if (typeof value === 'string') {
-      evaluated = value
+      evaluated = value;
     }
-    return prev.concat(curr, evaluated)
-  }, '')
-}
+    return prev.concat(curr, evaluated);
+  }, '');
+};
 
 /**
  * Normalizes whitespsace in a string
@@ -65,8 +65,8 @@ export const removeWhitespace = (str: string): string => {
       // remove line breaks
       .replace(/\n/gm, '')
       .trim()
-  )
-}
+  );
+};
 
 /**
  * Convience function for createCSSObject
@@ -75,16 +75,16 @@ export const removeWhitespace = (str: string): string => {
  * @returns [string, RegExpMatchArray] tuple
  */
 const parseCSSRegex = (str: string, re: RegExp): [string, RegExpMatchArray] => {
-  let parsedString: string = str
-  const result = parsedString.match(re) || []
+  let parsedString: string = str;
+  const result = parsedString.match(re) || [];
   if (result && result.length > 0) {
     result.forEach((match) => {
-      const start = parsedString.indexOf(match)
-      parsedString = parsedString.slice(0, start).concat(parsedString.slice(start + match.length))
-    })
+      const start = parsedString.indexOf(match);
+      parsedString = parsedString.slice(0, start).concat(parsedString.slice(start + match.length));
+    });
   }
-  return [parsedString, result]
-}
+  return [parsedString, result];
+};
 
 /**
  * createCSSObject: Takes string from tagged function and creates object by type
@@ -94,20 +94,20 @@ const parseCSSRegex = (str: string, re: RegExp): [string, RegExpMatchArray] => {
 export const createCSSObject = (str: string): ParsedCSSResult => {
   try {
     // Media Queries
-    const [parsedMediaString, mediaQueries] = parseCSSRegex(str, mediaQueryRegex)
+    const [parsedMediaString, mediaQueries] = parseCSSRegex(str, mediaQueryRegex);
     // Psuedo Classes
-    const [parsedPsuedoString, psuedoClasses] = parseCSSRegex(parsedMediaString, psuedoClassRegex)
+    const [parsedPsuedoString, psuedoClasses] = parseCSSRegex(parsedMediaString, psuedoClassRegex);
     // Key/Value
     const keyValue = parsedPsuedoString
       .split(';')
       .map((itm) => itm.trim())
-      .filter((itm) => itm.length > 0)
-    return { mediaQueries, psuedoClasses, keyValue }
+      .filter((itm) => itm.length > 0);
+    return { mediaQueries, psuedoClasses, keyValue };
   } catch (err) {
-    console.warn(`Resultant CSS is invalid: ${err}`)
-    return { mediaQueries: [], psuedoClasses: [], keyValue: [] }
+    console.warn(`Resultant CSS is invalid: ${err}`);
+    return { mediaQueries: [], psuedoClasses: [], keyValue: [] };
   }
-}
+};
 
 /**
  * Naive CSS string concatenator
@@ -117,14 +117,16 @@ export const createCSSObject = (str: string): ParsedCSSResult => {
  */
 export const createCSSString = (obj: ParsedCSSResult, className: string): string => {
   // order: keyval > psuedo > media
-  const { keyValue, psuedoClasses, mediaQueries } = obj
-  let str = ''
+  const { keyValue, psuedoClasses, mediaQueries } = obj;
+  let str = '';
   str =
-    keyValue && keyValue.length > 0 ? `.${className} { ${keyValue.join(';\n').concat(';')} }\n` : ''
-  str += psuedoClasses && psuedoClasses.length > 0 ? `${psuedoClasses.join('\n')}\n` : ''
-  str += mediaQueries && mediaQueries.length > 0 ? `${mediaQueries.join('\n')}\n` : ''
-  return str.replace(/&/gm, '.' + className)
-}
+    keyValue && keyValue.length > 0
+      ? `.${className} { ${keyValue.join(';\n').concat(';')} }\n`
+      : '';
+  str += psuedoClasses && psuedoClasses.length > 0 ? `${psuedoClasses.join('\n')}\n` : '';
+  str += mediaQueries && mediaQueries.length > 0 ? `${mediaQueries.join('\n')}\n` : '';
+  return str.replace(/&/gm, '.' + className);
+};
 
 /**
  * HTMLStyleElement constructor
@@ -133,8 +135,8 @@ export const createCSSString = (obj: ParsedCSSResult, className: string): string
  * @returns HTMLStyleElement
  */
 export const createStyleElement = (id: string, styles: string): HTMLStyleElement => {
-  const styleEl = document.createElement('style')
-  styleEl.innerHTML = styles
-  styleEl.id = id
-  return styleEl
-}
+  const styleEl = document.createElement('style');
+  styleEl.innerHTML = styles;
+  styleEl.id = id;
+  return styleEl;
+};

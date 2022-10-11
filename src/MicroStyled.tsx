@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useRef } from 'react'
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import {
   createCSSString,
@@ -7,17 +7,17 @@ import {
   interpolate,
   randomString,
   removeWhitespace,
-} from './StringUtils'
+} from './StringUtils';
 
 import type {
-  BaseProps,
   CacheContainer,
+  GlobalStyleSheetProps,
   InlineBlocks,
   StyledProps,
   TagFunction,
   TaggedFunctionStrings,
   Theme,
-} from './types'
+} from './types';
 
 /**
  * Theme Cache Context
@@ -26,28 +26,58 @@ import type {
 /**
  * ThemeCacheContext: the context for the container
  */
-export const ThemeCacheContext = createContext(null)
+export const ThemeCacheContext = createContext(null);
 /**
  * useThemeCacheContext: context convienence function
  * @returns ThemeCacheContext
  */
 export const useThemeCacheContext = () => {
-  return useContext(ThemeCacheContext) || { container: document.head }
-}
+  return useContext(ThemeCacheContext) ?? { container: document.head };
+};
 /**
  * ThemeCacheProvider: main entrypoint for context provider
- * @param container
+ * @param container either an HTMLElement or Promise returning one
  * @returns ThemeCache Provider Component
  */
-export const ThemeCacheProvider = (container: CacheContainer) => {
-  return (props: BaseProps) => {
+export const ThemeCacheProvider = (cacheContainer: CacheContainer) => {
+  return (props: React.PropsWithChildren) => {
+    const [container, setContainer] = useState(document.head);
+
+    useEffect(() => {
+      const setNewContainer = async () => {
+        const originalContainer = container;
+        try {
+          const newContainer =
+            typeof cacheContainer === 'function' ? await cacheContainer() : cacheContainer;
+          if (newContainer && originalContainer) {
+            setContainer(newContainer);
+            // move stylesheets to specified container
+            // cannot use pattern matching in `:not()` in main selector
+            Array.from(document.querySelectorAll('style[id^=micro-styled]'))
+              .filter((el) => !el.id.includes('micro-styled-global'))
+              .forEach((styleSheet: HTMLStyleElement) => newContainer.appendChild(styleSheet));
+          }
+        } catch (err) {
+          console.warn(err);
+        }
+      };
+
+      setNewContainer().catch(console.warn);
+
+      return () => {
+        Array.from(container.querySelectorAll('style[id^=micro-styled]')).forEach(
+          (sheet: HTMLStyleElement) => sheet.remove(),
+        );
+      };
+    }, [container]);
+
     return (
       <ThemeCacheContext.Provider value={{ container }}>
         {props.children}
       </ThemeCacheContext.Provider>
-    )
-  }
-}
+    );
+  };
+};
 
 /**
  * Theme Context
@@ -56,24 +86,58 @@ export const ThemeCacheProvider = (container: CacheContainer) => {
 /**
  * ThemeContext: the context for the theme object
  */
-export const ThemeContext = createContext(null)
+export const ThemeContext = createContext(null);
 /**
  * useThemeContext: context convienence function
  * @returns ThemeContext
  */
 export const useThemeContext = () => {
-  return useContext(ThemeContext) || {}
-}
+  return useContext(ThemeContext) || {};
+};
 /**
  * ThemeProvider: main entrypoint for context provider
  * @param theme
  * @returns Theme Provider Component
  */
 export const ThemeProvider = (theme: Theme) => {
-  return (props: BaseProps) => {
-    return <ThemeContext.Provider value={{ theme }}>{props.children}</ThemeContext.Provider>
-  }
-}
+  return (props: React.PropsWithChildren) => {
+    return <ThemeContext.Provider value={{ theme }}>{props.children}</ThemeContext.Provider>;
+  };
+};
+
+/**
+ * css styles helper function
+ * CSS rule validation is up to implementor
+ * Usage:
+ *   const styles = css(props)`
+ *      body {
+ *       color: ${props.theme.bodycolor};
+ *      }
+ *   `;
+ * @param props optional props to pass for inline functions
+ * @returns TagFunction that return the theme object parsed CSS stylesheet
+ */
+export const css = (props: Record<any, any> = {}): TagFunction => {
+  return (strings: TemplateStringsArray, ...values: InlineBlocks): string => {
+    const { theme } = useThemeContext();
+    const themeProps = { ...props, theme };
+    return interpolate(strings, values, themeProps);
+  };
+};
+
+/**
+ * GlobalStyleSheet singleton
+ * @param props styles: Template literal string
+ * @returns JSX.Element of <style/> for use in App layout
+ */
+export const GlobalStyleSheet = (props: GlobalStyleSheetProps) => {
+  const id = randomString(10, 'micro-styled-global-');
+  return (
+    <style key={id} id={id}>
+      {props.stylesheet}
+    </style>
+  );
+};
 
 /**
  * MicroStyled Component constructor function
@@ -89,14 +153,14 @@ export const Component = (
   values: InlineBlocks = [],
   selfClosing = false,
 ) => {
-  const className: string = randomString()
+  const className: string = randomString();
   const component: React.FC = (props: Partial<StyledProps>) => {
-    const styleElementId = `micro-styled-${className}`
+    const styleElementId = `micro-styled-${className}`;
     const config = {
       className,
-    }
-    const { theme } = useThemeContext()
-    const { container } = useThemeCacheContext()
+    };
+    const { theme } = useThemeContext();
+    const { container } = useThemeCacheContext();
     const cssRuleString = createCSSString(
       createCSSObject(
         removeWhitespace(
@@ -104,28 +168,28 @@ export const Component = (
         ),
       ),
       className,
-    )
-    const ref = useRef(null)
+    );
+    const ref = useRef(null);
     useEffect(() => {
       if (ref.current) {
-        ref.current.classList.add(className)
-        container.appendChild(createStyleElement(styleElementId, cssRuleString))
+        ref.current.classList.add(className);
+        container.appendChild(createStyleElement(styleElementId, cssRuleString));
       }
       return () => {
-        ref.current?.classList.remove(className)
-        container.querySelector(styleElementId)?.remove()
-      }
-    })
+        ref.current?.classList.remove(className);
+        container.querySelector(styleElementId)?.remove();
+      };
+    });
     return selfClosing ? (
       <Element key={className} {...props} ref={ref} />
     ) : (
       <Element key={className} {...props} ref={ref}>
         {props.children}
       </Element>
-    )
-  }
-  return component
-}
+    );
+  };
+  return component;
+};
 
 /**
  * ComponentFactory: Entrypoint factory for taking tagged function
@@ -135,9 +199,9 @@ export const Component = (
  */
 export const ComponentFactory = (elementTag: string, selfClosing = false): TagFunction => {
   return (strings: TemplateStringsArray, ...values: InlineBlocks): React.FC => {
-    return Component(elementTag, strings, values, selfClosing)
-  }
-}
+    return Component(elementTag, strings, values, selfClosing);
+  };
+};
 
 /**
  * Block renderable HTMLElements  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/
@@ -250,4 +314,4 @@ export default {
   varEl: ComponentFactory('var'),
   video: ComponentFactory('video'),
   wbr: ComponentFactory('wbr'),
-}
+};

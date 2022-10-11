@@ -1,10 +1,10 @@
-import { CSSProperties } from 'react';
+import React$1, { CSSProperties } from 'react';
 
 /**
  * TYPES
  */
-declare type CacheContainer = Element | typeof HTMLElement | HTMLHeadElement;
-declare type ComponentChildren = JSX.Element | JSX.Element[] | string;
+declare type ContainerElement = HTMLElement | HTMLHeadElement;
+declare type CacheContainer = (() => Promise<ContainerElement>) | ContainerElement;
 declare type CSSValue = Record<keyof Styles, string | number>;
 declare type InlineBlocks = Array<string | ((props: any) => any)>;
 declare type InlineStyleFunction = <T>(props: T) => string | void;
@@ -15,34 +15,55 @@ declare type Theme = Record<any, any>;
 /**
  * INTERFACES
  */
-interface BaseProps {
-    children?: ComponentChildren;
-}
-interface GenericComponentProps {
-    children: ComponentChildren;
-}
 interface ParsedCSSResult {
     keyValue: Array<string>;
     mediaQueries: Array<string>;
     psuedoClasses: Array<string>;
 }
-interface StyledProps {
+interface StyledProps extends Partial<React.PropsWithChildren> {
     style: Styles;
-    children: ComponentChildren;
+}
+interface GlobalStyleSheetProps {
+    stylesheet: string;
+}
+interface ThemeProviderProps extends Partial<React.PropsWithChildren> {
+    theme: Theme;
+}
+interface ThemeCacheProviderProps extends Partial<React.PropsWithChildren> {
+    container: CacheContainer;
 }
 
 /**
  * ThemeCacheProvider: main entrypoint for context provider
- * @param container
+ * @param container either an HTMLElement or Promise returning one
  * @returns ThemeCache Provider Component
  */
-declare const ThemeCacheProvider: (container: CacheContainer) => (props: BaseProps) => JSX.Element;
+declare const ThemeCacheProvider: (cacheContainer: CacheContainer) => (props: React$1.PropsWithChildren) => JSX.Element;
 /**
  * ThemeProvider: main entrypoint for context provider
  * @param theme
  * @returns Theme Provider Component
  */
-declare const ThemeProvider: (theme: Theme) => (props: BaseProps) => JSX.Element;
+declare const ThemeProvider: (theme: Theme) => (props: React$1.PropsWithChildren) => JSX.Element;
+/**
+ * css styles helper function
+ * CSS rule validation is up to implementor
+ * Usage:
+ *   const styles = css(props)`
+ *      body {
+ *       color: ${props.theme.bodycolor};
+ *      }
+ *   `;
+ * @param props optional props to pass for inline functions
+ * @returns TagFunction that return the theme object parsed CSS stylesheet
+ */
+declare const css: (props?: Record<any, any>) => TagFunction;
+/**
+ * GlobalStyleSheet singleton
+ * @param props styles: Template literal string
+ * @returns JSX.Element of <style/> for use in App layout
+ */
+declare const GlobalStyleSheet: (props: GlobalStyleSheetProps) => JSX.Element;
 /**
  * Block renderable HTMLElements  https://developer.mozilla.org/en-US/docs/Web/HTML/Element/
  */
@@ -179,7 +200,7 @@ declare const psuedoClassRegex: RegExp;
  * @param props Component props
  * @returns CSS stylesheet string
  */
-declare const interpolate: (strings: TaggedFunctionStrings, values: InlineBlocks, props?: any) => string;
+declare const interpolate: (strings: TaggedFunctionStrings, values: InlineBlocks, props?: Record<any, any>) => string;
 /**
  * Normalizes whitespsace in a string
  * @param str string
@@ -207,4 +228,4 @@ declare const createCSSString: (obj: ParsedCSSResult, className: string) => stri
  */
 declare const createStyleElement: (id: string, styles: string) => HTMLStyleElement;
 
-export { BaseProps, CSSValue, CacheContainer, ComponentChildren, GenericComponentProps, InlineBlocks, InlineStyleFunction, ParsedCSSResult, StyledProps, Styles, TagFunction, TaggedFunctionStrings, Theme, ThemeCacheProvider, ThemeProvider, createCSSObject, createCSSString, createStyleElement, _default as default, interpolate, mediaQueryRegex, psuedoClassRegex, randomString, removeWhitespace };
+export { CSSValue, CacheContainer, ContainerElement, GlobalStyleSheet, GlobalStyleSheetProps, InlineBlocks, InlineStyleFunction, ParsedCSSResult, StyledProps, Styles, TagFunction, TaggedFunctionStrings, Theme, ThemeCacheProvider, ThemeCacheProviderProps, ThemeProvider, ThemeProviderProps, createCSSObject, createCSSString, createStyleElement, css, _default as default, interpolate, mediaQueryRegex, psuedoClassRegex, randomString, removeWhitespace };

@@ -1,6 +1,6 @@
 {
   "name": "@caffedpkg/microstyled",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Micro prestyled React Component library inpspired by styled-components and @emotion/styled",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

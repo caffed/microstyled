@@ -2,6 +2,12 @@
 
 # Interface: StyledProps
 
+## Hierarchy
+
+- `Partial`<`React.PropsWithChildren`\>
+
+  ↳ **`StyledProps`**
+
 ## Table of contents
 
 ### Properties
@@ -13,11 +19,15 @@
 
 ### children
 
-• **children**: [`ComponentChildren`](../modules.md#componentchildren)
+• `Optional` **children**: `ReactNode`
+
+#### Inherited from
+
+Partial.children
 
 #### Defined in
 
-[types.ts:32](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L32)
+node_modules/@types/react/index.d.ts:799
 
 ___
 
@@ -27,4 +37,4 @@ ___
 
 #### Defined in
 
-[types.ts:31](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L31)
+[src/types.ts:25](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L25)
