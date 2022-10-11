@@ -2,6 +2,8 @@
 
 # Interface: ParsedCSSResult
 
+INTERFACES
+
 ## Table of contents
 
 ### Properties
@@ -18,7 +20,7 @@
 
 #### Defined in
 
-[types.ts:26](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L26)
+[src/types.ts:20](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L20)
 
 ___
 
@@ -28,7 +30,7 @@ ___
 
 #### Defined in
 
-[types.ts:27](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L27)
+[src/types.ts:21](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L21)
 
 ___
 
@@ -38,4 +40,4 @@ ___
 
 #### Defined in
 
-[types.ts:28](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L28)
+[src/types.ts:22](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L22)

@@ -6,16 +6,17 @@
 
 ### Interfaces
 
-- [BaseProps](interfaces/BaseProps.md)
-- [GenericComponentProps](interfaces/GenericComponentProps.md)
+- [GlobalStyleSheetProps](interfaces/GlobalStyleSheetProps.md)
 - [ParsedCSSResult](interfaces/ParsedCSSResult.md)
 - [StyledProps](interfaces/StyledProps.md)
+- [ThemeCacheProviderProps](interfaces/ThemeCacheProviderProps.md)
+- [ThemeProviderProps](interfaces/ThemeProviderProps.md)
 
 ### Type Aliases
 
 - [CSSValue](modules.md#cssvalue)
 - [CacheContainer](modules.md#cachecontainer)
-- [ComponentChildren](modules.md#componentchildren)
+- [ContainerElement](modules.md#containerelement)
 - [InlineBlocks](modules.md#inlineblocks)
 - [InlineStyleFunction](modules.md#inlinestylefunction)
 - [Styles](modules.md#styles)
@@ -31,11 +32,13 @@
 
 ### Functions
 
+- [GlobalStyleSheet](modules.md#globalstylesheet)
 - [ThemeCacheProvider](modules.md#themecacheprovider)
 - [ThemeProvider](modules.md#themeprovider)
 - [createCSSObject](modules.md#createcssobject)
 - [createCSSString](modules.md#createcssstring)
 - [createStyleElement](modules.md#createstyleelement)
+- [css](modules.md#css)
 - [interpolate](modules.md#interpolate)
 - [randomString](modules.md#randomstring)
 - [removeWhitespace](modules.md#removewhitespace)
@@ -48,29 +51,29 @@
 
 #### Defined in
 
-[types.ts:8](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L8)
+[src/types.ts:8](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L8)
 
 ___
 
 ### CacheContainer
 
-Ƭ **CacheContainer**: `Element` \| typeof `HTMLElement` \| `HTMLHeadElement`
+Ƭ **CacheContainer**: () => `Promise`<[`ContainerElement`](modules.md#containerelement)\> \| [`ContainerElement`](modules.md#containerelement)
+
+#### Defined in
+
+[src/types.ts:7](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L7)
+
+___
+
+### ContainerElement
+
+Ƭ **ContainerElement**: `HTMLElement` \| `HTMLHeadElement`
 
 TYPES
 
 #### Defined in
 
-[types.ts:6](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L6)
-
-___
-
-### ComponentChildren
-
-Ƭ **ComponentChildren**: `JSX.Element` \| `JSX.Element`[] \| `string`
-
-#### Defined in
-
-[types.ts:7](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L7)
+[src/types.ts:6](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L6)
 
 ___
 
@@ -80,7 +83,7 @@ ___
 
 #### Defined in
 
-[types.ts:9](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L9)
+[src/types.ts:9](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L9)
 
 ___
 
@@ -110,7 +113,7 @@ ___
 
 #### Defined in
 
-[types.ts:10](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L10)
+[src/types.ts:10](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L10)
 
 ___
 
@@ -120,7 +123,7 @@ ___
 
 #### Defined in
 
-[types.ts:11](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L11)
+[src/types.ts:11](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L11)
 
 ___
 
@@ -145,7 +148,7 @@ ___
 
 #### Defined in
 
-[types.ts:13](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L13)
+[src/types.ts:13](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L13)
 
 ___
 
@@ -155,7 +158,7 @@ ___
 
 #### Defined in
 
-[types.ts:12](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L12)
+[src/types.ts:12](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L12)
 
 ___
 
@@ -165,7 +168,7 @@ ___
 
 #### Defined in
 
-[types.ts:14](https://github.com/caffed/microstyled/blob/80813e4/src/types.ts#L14)
+[src/types.ts:14](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L14)
 
 ## Variables
 
@@ -289,7 +292,7 @@ Block renderable HTMLElements  https://developer.mozilla.org/en-US/docs/Web/HTML
 
 #### Defined in
 
-[MicroStyled.tsx:145](https://github.com/caffed/microstyled/blob/80813e4/src/MicroStyled.tsx#L145)
+[src/MicroStyled.tsx:209](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L209)
 
 ___
 
@@ -301,7 +304,7 @@ mediaQueryRegex - matches `@ { ... }`
 
 #### Defined in
 
-[StringUtils.ts:24](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L24)
+[src/StringUtils.ts:24](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L24)
 
 ___
 
@@ -313,13 +316,37 @@ psuedoClassRegex - matches `& { ... }`
 
 #### Defined in
 
-[StringUtils.ts:29](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L29)
+[src/StringUtils.ts:29](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L29)
 
 ## Functions
 
+### GlobalStyleSheet
+
+▸ **GlobalStyleSheet**(`props`): `Element`
+
+GlobalStyleSheet singleton
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | [`GlobalStyleSheetProps`](interfaces/GlobalStyleSheetProps.md) | styles: Template literal string |
+
+#### Returns
+
+`Element`
+
+JSX.Element of <style/> for use in App layout
+
+#### Defined in
+
+[src/MicroStyled.tsx:133](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L133)
+
+___
+
 ### ThemeCacheProvider
 
-▸ **ThemeCacheProvider**(`container`): (`props`: [`BaseProps`](interfaces/BaseProps.md)) => `Element`
+▸ **ThemeCacheProvider**(`cacheContainer`): (`props`: { `children?`: `ReactNode`  }) => `Element`
 
 ThemeCacheProvider: main entrypoint for context provider
 
@@ -327,7 +354,7 @@ ThemeCacheProvider: main entrypoint for context provider
 
 | Name | Type |
 | :------ | :------ |
-| `container` | [`CacheContainer`](modules.md#cachecontainer) |
+| `cacheContainer` | [`CacheContainer`](modules.md#cachecontainer) |
 
 #### Returns
 
@@ -341,7 +368,8 @@ ThemeCache Provider Component
 
 | Name | Type |
 | :------ | :------ |
-| `props` | [`BaseProps`](interfaces/BaseProps.md) |
+| `props` | `Object` |
+| `props.children?` | `ReactNode` |
 
 ##### Returns
 
@@ -349,13 +377,13 @@ ThemeCache Provider Component
 
 #### Defined in
 
-[MicroStyled.tsx:42](https://github.com/caffed/microstyled/blob/80813e4/src/MicroStyled.tsx#L42)
+[src/MicroStyled.tsx:42](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L42)
 
 ___
 
 ### ThemeProvider
 
-▸ **ThemeProvider**(`theme`): (`props`: [`BaseProps`](interfaces/BaseProps.md)) => `Element`
+▸ **ThemeProvider**(`theme`): (`props`: { `children?`: `ReactNode`  }) => `Element`
 
 ThemeProvider: main entrypoint for context provider
 
@@ -377,7 +405,8 @@ Theme Provider Component
 
 | Name | Type |
 | :------ | :------ |
-| `props` | [`BaseProps`](interfaces/BaseProps.md) |
+| `props` | `Object` |
+| `props.children?` | `ReactNode` |
 
 ##### Returns
 
@@ -385,7 +414,7 @@ Theme Provider Component
 
 #### Defined in
 
-[MicroStyled.tsx:72](https://github.com/caffed/microstyled/blob/80813e4/src/MicroStyled.tsx#L72)
+[src/MicroStyled.tsx:102](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L102)
 
 ___
 
@@ -409,7 +438,7 @@ ParsedCSSResult Record
 
 #### Defined in
 
-[StringUtils.ts:94](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L94)
+[src/StringUtils.ts:94](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L94)
 
 ___
 
@@ -434,7 +463,7 @@ string
 
 #### Defined in
 
-[StringUtils.ts:118](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L118)
+[src/StringUtils.ts:118](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L118)
 
 ___
 
@@ -459,7 +488,38 @@ HTMLStyleElement
 
 #### Defined in
 
-[StringUtils.ts:135](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L135)
+[src/StringUtils.ts:137](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L137)
+
+___
+
+### css
+
+▸ **css**(`props?`): [`TagFunction`](modules.md#tagfunction)
+
+css styles helper function
+CSS rule validation is up to implementor
+Usage:
+  const styles = css(props)`
+     body {
+      color: ${props.theme.bodycolor};
+     }
+  `;
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | `Record`<`any`, `any`\> | optional props to pass for inline functions |
+
+#### Returns
+
+[`TagFunction`](modules.md#tagfunction)
+
+TagFunction that return the theme object parsed CSS stylesheet
+
+#### Defined in
+
+[src/MicroStyled.tsx:120](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L120)
 
 ___
 
@@ -475,7 +535,7 @@ interpolate: Tagged string function parser
 | :------ | :------ | :------ |
 | `strings` | [`TaggedFunctionStrings`](modules.md#taggedfunctionstrings) | Tagged Function Strings |
 | `values` | [`InlineBlocks`](modules.md#inlineblocks) | Tagged Function Values |
-| `props` | `any` | Component props |
+| `props` | `Record`<`any`, `any`\> | Component props |
 
 #### Returns
 
@@ -485,7 +545,7 @@ CSS stylesheet string
 
 #### Defined in
 
-[StringUtils.ts:38](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L38)
+[src/StringUtils.ts:38](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L38)
 
 ___
 
@@ -511,7 +571,7 @@ string
 
 #### Defined in
 
-[StringUtils.ts:10](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L10)
+[src/StringUtils.ts:10](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L10)
 
 ___
 
@@ -535,4 +595,4 @@ string
 
 #### Defined in
 
-[StringUtils.ts:60](https://github.com/caffed/microstyled/blob/80813e4/src/StringUtils.ts#L60)
+[src/StringUtils.ts:60](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L60)
