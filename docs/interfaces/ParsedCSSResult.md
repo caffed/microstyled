@@ -20,7 +20,7 @@ INTERFACES
 
 #### Defined in
 
-[src/types.ts:20](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L20)
+[src/types.ts:20](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L20)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:21](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L21)
+[src/types.ts:21](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L21)
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:22](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L22)
+[src/types.ts:22](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L22)

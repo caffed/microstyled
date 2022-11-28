@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[src/types.ts:28](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L28)
+[src/types.ts:28](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L28)

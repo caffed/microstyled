@@ -27,7 +27,7 @@ Partial.children
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:799
+node_modules/@types/react/index.d.ts:800
 
 ___
 
@@ -37,4 +37,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:25](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L25)
+[src/types.ts:25](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L25)

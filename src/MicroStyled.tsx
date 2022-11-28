@@ -55,7 +55,11 @@ export const ThemeCacheProvider = (cacheContainer: CacheContainer) => {
             // cannot use pattern matching in `:not()` in main selector
             Array.from(document.querySelectorAll('style[id^=micro-styled]'))
               .filter((el) => !el.id.includes('micro-styled-global'))
-              .forEach((styleSheet: HTMLStyleElement) => newContainer.appendChild(styleSheet));
+              .forEach((styleSheet: HTMLStyleElement) => {
+                if (!newContainer.querySelector('#' + styleSheet.id)) {
+                  newContainer.appendChild(styleSheet);
+                }
+              });
           }
         } catch (err) {
           console.warn(err);
@@ -155,6 +159,7 @@ export const Component = (
 ) => {
   const className: string = randomString();
   const component: React.FC = (props: Partial<StyledProps>) => {
+    // create replacable prefix instead of hard coded 'micro-styled'
     const styleElementId = `micro-styled-${className}`;
     const config = {
       className,
@@ -173,7 +178,9 @@ export const Component = (
     useEffect(() => {
       if (ref.current) {
         ref.current.classList.add(className);
-        container.appendChild(createStyleElement(styleElementId, cssRuleString));
+        if (!container.querySelector('#' + styleElementId)) {
+          container.appendChild(createStyleElement(styleElementId, cssRuleString));
+        }
       }
       return () => {
         ref.current?.classList.remove(className);

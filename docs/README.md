@@ -37,6 +37,7 @@
 
   - Root level key/value pairs can be copied "as is" from normal CSS.
 
+ 
   ```JSX
   import microstyled from '@caffedpkg/microstyled';
   
@@ -63,7 +64,8 @@
 - Psuedo class properties
 
   - The ampersand is used as a placeholder for the component class reference
-  
+
+ 
   ```JSX
   import microstyled from '@caffedpkg/microstyled';
   
@@ -80,7 +82,6 @@
   
   - The resultant output:
 
-	
   ```JSX
   // in stylesheet container
   <style id="micro-stled-randomHash">
@@ -229,8 +230,8 @@
   );
   ```
 - The `css()` helper takes a props-like parameter and returns a stylesheet tag function with the props and the current theme object merged into a single 'props' object.
-
-  ```
+  
+  ```JSX
     // theme used in provider
     const theme = { fontSize: '24px' };
     // somewhere else
@@ -288,6 +289,7 @@
 - Media queries need to use the `@media` identifier followed by a clause and have opening `{` and closing `}` curly braces with at least one nested rule. 
   - Key/value pairs curently need to be wrapped in a className reference `& { ... }`.
 
+  
   ```JSX
   const Box = microstyled.div`
     grid-template-columns: 1fr 1fr;

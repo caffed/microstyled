@@ -1,6 +1,6 @@
-import styled from '@caffedpkg/microstyled';
+import microstyled from '@caffedpkg/microstyled';
 
-const ThemedComponent = styled.div`
+const ThemedComponent = microstyled.div`
   font-size: 24px;
   color: grey;
   &:hover {

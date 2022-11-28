@@ -3,15 +3,15 @@ import React$1, { CSSProperties } from 'react';
 /**
  * TYPES
  */
-declare type ContainerElement = HTMLElement | HTMLHeadElement;
-declare type CacheContainer = (() => Promise<ContainerElement>) | ContainerElement;
-declare type CSSValue = Record<keyof Styles, string | number>;
-declare type InlineBlocks = Array<string | ((props: any) => any)>;
-declare type InlineStyleFunction = <T>(props: T) => string | void;
-declare type Styles = Record<keyof CSSProperties, string | number>;
-declare type TaggedFunctionStrings = Readonly<string[]> | TemplateStringsArray;
-declare type TagFunction = (strings: TemplateStringsArray, ...values: InlineBlocks) => any;
-declare type Theme = Record<any, any>;
+type ContainerElement = HTMLElement | HTMLHeadElement;
+type CacheContainer = (() => Promise<ContainerElement>) | ContainerElement;
+type CSSValue = Record<keyof Styles, string | number>;
+type InlineBlocks = Array<string | ((props: any) => any)>;
+type InlineStyleFunction = <T>(props: T) => string | void;
+type Styles = Record<keyof CSSProperties, string | number>;
+type TaggedFunctionStrings = Readonly<string[]> | TemplateStringsArray;
+type TagFunction = (strings: TemplateStringsArray, ...values: InlineBlocks) => any;
+type Theme = Record<any, any>;
 /**
  * INTERFACES
  */
