@@ -74,7 +74,7 @@ export const removeWhitespace = (str: string): string => {
  * @param re regix
  * @returns [string, RegExpMatchArray] tuple
  */
-const parseCSSRegex = (str: string, re: RegExp): [string, RegExpMatchArray] => {
+const parseCSSRegex = (str: string, re: RegExp): [string, RegExpMatchArray | []] => {
   let parsedString: string = str;
   const result = parsedString.match(re) || [];
   if (result && result.length > 0) {

@@ -79,7 +79,7 @@ describe('<MicroStyled />', () => {
     expect(screen.queryByText(text)).not.toBeNull();
   });
 
-  it('should create a stylesheet in the head', async () => {
+  it('should create a stylesheet in the container', async () => {
     const text = randomString();
     const compClassName = `micro-styled-${id}`;
     renderComponent(Comp)({ children: text });
@@ -100,6 +100,19 @@ describe('<MicroStyled />', () => {
     renderComponent(Comp)({ children: text });
     const el = screen.queryByText(text);
     expect(el.localName).toBe('div');
+  });
+
+  it('should not create duplicate stylesheets in the container', async () => {
+    const resolved = Promise.resolve();
+    render(
+      <>
+        <Comp />
+        <Comp />
+      </>,
+    );
+    const styleSheets = Array.from(document.head.querySelectorAll(`#micro-styled-${id}`));
+    expect(styleSheets.length).toBe(1);
+    await act(() => resolved);
   });
 });
 
@@ -155,15 +168,19 @@ describe('<ThemeCacheProvider />', () => {
   );
 
   it('should render with a component child', async () => {
+    const resolved = Promise.resolve();
     const text = randomString();
     renderComponent(ThemeCacheComp)({ children: text });
     render(<ThemeCacheWithComponent />);
     expect(screen.queryByText(text)).not.toBeNull();
+    await act(() => resolved);
   });
 
   it('should render theme stylesheet in container', async () => {
+    const resolved = Promise.resolve();
     renderComponent(ThemeCacheWithComponent)({});
     const el = document.getElementById('micro-styled-' + themedCacheCompClass);
     expect(el).not.toBe(null);
+    await act(() => resolved);
   });
 });

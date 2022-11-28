@@ -51,7 +51,7 @@
 
 #### Defined in
 
-[src/types.ts:8](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L8)
+[src/types.ts:8](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L8)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:7](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L7)
+[src/types.ts:7](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L7)
 
 ___
 
@@ -73,7 +73,7 @@ TYPES
 
 #### Defined in
 
-[src/types.ts:6](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L6)
+[src/types.ts:6](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L6)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:9](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L9)
+[src/types.ts:9](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L9)
 
 ___
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:10](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L10)
+[src/types.ts:10](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L10)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:11](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L11)
+[src/types.ts:11](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L11)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:13](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L13)
+[src/types.ts:13](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L13)
 
 ___
 
@@ -158,7 +158,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:12](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L12)
+[src/types.ts:12](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L12)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:14](https://github.com/caffed/microstyled/blob/006d6b8/src/types.ts#L14)
+[src/types.ts:14](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L14)
 
 ## Variables
 
@@ -292,7 +292,7 @@ Block renderable HTMLElements  https://developer.mozilla.org/en-US/docs/Web/HTML
 
 #### Defined in
 
-[src/MicroStyled.tsx:209](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L209)
+[src/MicroStyled.tsx:216](https://github.com/caffed/microstyled/blob/bba0823/src/MicroStyled.tsx#L216)
 
 ___
 
@@ -304,7 +304,7 @@ mediaQueryRegex - matches `@ { ... }`
 
 #### Defined in
 
-[src/StringUtils.ts:24](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L24)
+[src/StringUtils.ts:24](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L24)
 
 ___
 
@@ -316,7 +316,7 @@ psuedoClassRegex - matches `& { ... }`
 
 #### Defined in
 
-[src/StringUtils.ts:29](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L29)
+[src/StringUtils.ts:29](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L29)
 
 ## Functions
 
@@ -340,7 +340,7 @@ JSX.Element of <style/> for use in App layout
 
 #### Defined in
 
-[src/MicroStyled.tsx:133](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L133)
+[src/MicroStyled.tsx:137](https://github.com/caffed/microstyled/blob/bba0823/src/MicroStyled.tsx#L137)
 
 ___
 
@@ -377,7 +377,7 @@ ThemeCache Provider Component
 
 #### Defined in
 
-[src/MicroStyled.tsx:42](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L42)
+[src/MicroStyled.tsx:42](https://github.com/caffed/microstyled/blob/bba0823/src/MicroStyled.tsx#L42)
 
 ___
 
@@ -414,7 +414,7 @@ Theme Provider Component
 
 #### Defined in
 
-[src/MicroStyled.tsx:102](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L102)
+[src/MicroStyled.tsx:106](https://github.com/caffed/microstyled/blob/bba0823/src/MicroStyled.tsx#L106)
 
 ___
 
@@ -438,7 +438,7 @@ ParsedCSSResult Record
 
 #### Defined in
 
-[src/StringUtils.ts:94](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L94)
+[src/StringUtils.ts:94](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L94)
 
 ___
 
@@ -463,7 +463,7 @@ string
 
 #### Defined in
 
-[src/StringUtils.ts:118](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L118)
+[src/StringUtils.ts:118](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L118)
 
 ___
 
@@ -488,7 +488,7 @@ HTMLStyleElement
 
 #### Defined in
 
-[src/StringUtils.ts:137](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L137)
+[src/StringUtils.ts:137](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L137)
 
 ___
 
@@ -519,7 +519,7 @@ TagFunction that return the theme object parsed CSS stylesheet
 
 #### Defined in
 
-[src/MicroStyled.tsx:120](https://github.com/caffed/microstyled/blob/006d6b8/src/MicroStyled.tsx#L120)
+[src/MicroStyled.tsx:124](https://github.com/caffed/microstyled/blob/bba0823/src/MicroStyled.tsx#L124)
 
 ___
 
@@ -545,7 +545,7 @@ CSS stylesheet string
 
 #### Defined in
 
-[src/StringUtils.ts:38](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L38)
+[src/StringUtils.ts:38](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L38)
 
 ___
 
@@ -571,7 +571,7 @@ string
 
 #### Defined in
 
-[src/StringUtils.ts:10](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L10)
+[src/StringUtils.ts:10](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L10)
 
 ___
 
@@ -595,4 +595,4 @@ string
 
 #### Defined in
 
-[src/StringUtils.ts:60](https://github.com/caffed/microstyled/blob/006d6b8/src/StringUtils.ts#L60)
+[src/StringUtils.ts:60](https://github.com/caffed/microstyled/blob/bba0823/src/StringUtils.ts#L60)
