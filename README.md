@@ -6,6 +6,10 @@
 	</div>
 </div>
 
+## Update!!! (September 19th 2023) 
+- Just in case if anyone is wondering, this project is not abandoned. I am currently working on 2.0 for this project and a UI library based off of it. Both should be released befoer the end of the year.
+
+
 ## About
 - Why?
   - I wanted something smaller and with less dependencies to use for my own projects.
