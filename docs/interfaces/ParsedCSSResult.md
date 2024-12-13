@@ -1,43 +1,39 @@
-[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / ParsedCSSResult
+[**@caffedpkg/microstyled**](../README.md)
+
+***
+
+[@caffedpkg/microstyled](../globals.md) / ParsedCSSResult
 
 # Interface: ParsedCSSResult
 
 INTERFACES
 
-## Table of contents
-
-### Properties
-
-- [keyValue](ParsedCSSResult.md#keyvalue)
-- [mediaQueries](ParsedCSSResult.md#mediaqueries)
-- [psuedoClasses](ParsedCSSResult.md#psuedoclasses)
-
 ## Properties
 
 ### keyValue
 
-• **keyValue**: `string`[]
+> **keyValue**: `string`[]
 
 #### Defined in
 
-[src/types.ts:20](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L20)
+[src/types.ts:17](https://github.com/caffed/microstyled/blob/0e0d0d91e7aa2e3a4202341d6352feeb008d9de4/src/types.ts#L17)
 
-___
+***
 
 ### mediaQueries
 
-• **mediaQueries**: `string`[]
+> **mediaQueries**: `string`[]
 
 #### Defined in
 
-[src/types.ts:21](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L21)
+[src/types.ts:18](https://github.com/caffed/microstyled/blob/0e0d0d91e7aa2e3a4202341d6352feeb008d9de4/src/types.ts#L18)
 
-___
+***
 
 ### psuedoClasses
 
-• **psuedoClasses**: `string`[]
+> **psuedoClasses**: `string`[]
 
 #### Defined in
 
-[src/types.ts:22](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L22)
+[src/types.ts:19](https://github.com/caffed/microstyled/blob/0e0d0d91e7aa2e3a4202341d6352feeb008d9de4/src/types.ts#L19)

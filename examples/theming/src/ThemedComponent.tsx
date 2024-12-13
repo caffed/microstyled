@@ -1,11 +1,18 @@
 import microstyled from '@caffedpkg/microstyled';
 
-const ThemedComponent = microstyled.div`
+export const ThemedComponent = microstyled.div`
+  /**
+   * block comment
+   */
   font-size: 24px;
-  color: grey;
+  color: grey; // line comment
   &:hover {
     color: blue;
   }
 `;
 
-export default ThemedComponent;
+export const SmallText =  microstyled.div`
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+`;

@@ -1,14 +1,13 @@
 import { expect } from 'chai';
-import type { InlineBlocks } from './types';
+import {
+  randomString,
+} from '@caffedpkg/microcore';
 import {
   createCSSObject,
   createCSSString,
   createStyleElement,
-  interpolate,
   mediaQueryRegex,
   psuedoClassRegex,
-  randomString,
-  removeWhitespace,
 } from './StringUtils';
 
 describe('StringUtils', () => {
@@ -109,32 +108,6 @@ describe('StringUtils', () => {
     });
   });
 
-  describe('interpolate', function () {
-    it('should interpolate strings correctly', function () {
-      const testTemplateStrings = ['color: white;\n font-size: 24px;'];
-      const testTemplateValues: InlineBlocks = [''];
-      const testProps = {};
-      const result = interpolate(testTemplateStrings, testTemplateValues, testProps);
-      expect(result).to.eq('color: white;\n font-size: 24px;');
-    });
-
-    it('should interpolate strings with values correctly', function () {
-      const testTemplateStrings = ['color: white;\n font-size: ', 'px;'];
-      const testTemplateValues: InlineBlocks = ['24'];
-      const testProps = {};
-      const result = interpolate(testTemplateStrings, testTemplateValues, testProps);
-      expect(result).to.eq('color: white;\n font-size: 24px;');
-    });
-
-    it('should interpolate strings and values with props correctly', function () {
-      const testTemplateStrings = ['color: white;\n background-color: ', ';'];
-      const testTemplateValues: InlineBlocks = [(props: any) => props.theme.color];
-      const testProps = { theme: { color: 'white' } };
-      const result = interpolate(testTemplateStrings, testTemplateValues, testProps);
-      expect(result).to.eq('color: white;\n background-color: white;');
-    });
-  });
-
   describe('psuedoClassRegex', function () {
     it("should match between '&' and '}'", function () {
       const testString = 'lorem ipsum & { color: white; } lorem ipsum';
@@ -151,47 +124,6 @@ describe('StringUtils', () => {
       const result = testString.match(mediaQueryRegex);
       expect(result.length).to.eq(1);
       expect(result[0]).to.eq('@media (min-width: 300px) { & {  color: white;  } }');
-    });
-  });
-
-  describe('randomString', function () {
-    it('should return a 20 alpha character string', function () {
-      expect(randomString().length).to.eq(20);
-    });
-
-    it('should return an arbitrary character length string', function () {
-      const number = Math.floor(Math.random() * 100);
-      expect(randomString(number).length).to.eq(number);
-    });
-
-    it('should return an only alpha character string', function () {
-      expect(/\d+/.exec(randomString())).to.be.an('null');
-    });
-
-    it('should return an alphanumeric character string', function () {
-      const result = randomString(20, '', false);
-      expect(/\d+/.exec(result).length).to.be.at.least(1);
-      expect(/[A-Za-z]+/.exec(result).length).to.be.at.least(1);
-    });
-  });
-
-  /**
-   * @name removeWhitespace
-   */
-  describe('removeWhitespace', function () {
-    const correctString = 'test string';
-
-    it('should remove whitespace', async () => {
-      expect(removeWhitespace('test   string')).to.eq(correctString);
-    });
-
-    it('should trim whitespace', async () => {
-      expect(removeWhitespace(' test string ')).to.eq(correctString);
-    });
-
-    it('should not affect correctly formatted string', async () => {
-      const noopString = 'test string';
-      expect(removeWhitespace(noopString)).to.eq(noopString);
     });
   });
 });

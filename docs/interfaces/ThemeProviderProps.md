@@ -1,40 +1,35 @@
-[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / ThemeProviderProps
+[**@caffedpkg/microstyled**](../README.md)
+
+***
+
+[@caffedpkg/microstyled](../globals.md) / ThemeProviderProps
 
 # Interface: ThemeProviderProps
 
-## Hierarchy
+## Extends
 
-- `Partial`<`React.PropsWithChildren`\>
-
-  ↳ **`ThemeProviderProps`**
-
-## Table of contents
-
-### Properties
-
-- [children](ThemeProviderProps.md#children)
-- [theme](ThemeProviderProps.md#theme)
+- `Partial`\<`React.PropsWithChildren`\>
 
 ## Properties
 
-### children
+### children?
 
-• `Optional` **children**: `ReactNode`
+> `optional` **children**: `ReactNode`
 
 #### Inherited from
 
-Partial.children
+`Partial.children`
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:800
+node\_modules/@types/react/index.d.ts:800
 
-___
+***
 
 ### theme
 
-• **theme**: [`Theme`](../modules.md#theme)
+> **theme**: [`Theme`](../type-aliases/Theme.md)
 
 #### Defined in
 
-[src/types.ts:31](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L31)
+[src/types.ts:30](https://github.com/caffed/microstyled/blob/0e0d0d91e7aa2e3a4202341d6352feeb008d9de4/src/types.ts#L30)

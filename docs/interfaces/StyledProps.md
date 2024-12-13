@@ -1,40 +1,45 @@
-[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / StyledProps
+[**@caffedpkg/microstyled**](../README.md)
+
+***
+
+[@caffedpkg/microstyled](../globals.md) / StyledProps
 
 # Interface: StyledProps
 
-## Hierarchy
+## Extends
 
-- `Partial`<`React.PropsWithChildren`\>
-
-  ↳ **`StyledProps`**
-
-## Table of contents
-
-### Properties
-
-- [children](StyledProps.md#children)
-- [style](StyledProps.md#style)
+- `Partial`\<`React.PropsWithChildren`\>
 
 ## Properties
 
-### children
+### children?
 
-• `Optional` **children**: `ReactNode`
+> `optional` **children**: `ReactNode`
 
 #### Inherited from
 
-Partial.children
+`Partial.children`
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:800
+node\_modules/@types/react/index.d.ts:800
 
-___
+***
+
+### componentCssPrefix?
+
+> `optional` **componentCssPrefix**: `string`
+
+#### Defined in
+
+[src/types.ts:22](https://github.com/caffed/microstyled/blob/0e0d0d91e7aa2e3a4202341d6352feeb008d9de4/src/types.ts#L22)
+
+***
 
 ### style
 
-• **style**: [`Styles`](../modules.md#styles)
+> **style**: [`Styles`](../type-aliases/Styles.md)
 
 #### Defined in
 
-[src/types.ts:25](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L25)
+[src/types.ts:23](https://github.com/caffed/microstyled/blob/0e0d0d91e7aa2e3a4202341d6352feeb008d9de4/src/types.ts#L23)

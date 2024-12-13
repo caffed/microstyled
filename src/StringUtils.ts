@@ -1,22 +1,4 @@
-import type { InlineBlocks, ParsedCSSResult, TaggedFunctionStrings } from './types';
-
-/**
- * Random String generator
- * @param length Number: length of the final string
- * @param prefix String prefix
- * @param stripNumeric boolean to remove numbers
- * @returns string
- */
-export const randomString = (length = 20, prefix = '', stripNumeric = true): string => {
-  let str = Math.random()
-    .toString(36)
-    .slice(2, 2 + length);
-  str = stripNumeric ? str.replace(/[0-9]/g, '') : str;
-  if (str.length !== length) {
-    return randomString(length - str.length, prefix.concat(str), stripNumeric);
-  }
-  return prefix.concat(str);
-};
+import type { ParsedCSSResult } from './types';
 
 /**
  * mediaQueryRegex - matches `@ { ... }`
@@ -28,29 +10,7 @@ export const mediaQueryRegex = /(@media)(.*?)(\}\s+\})/gm;
  */
 export const psuedoClassRegex = /(&)(.*?)(\})/gm;
 
-/**
- * interpolate: Tagged string function parser
- * @param strings Tagged Function Strings
- * @param values Tagged Function Values
- * @param props Component props
- * @returns CSS stylesheet string
- */
-export const interpolate = (
-  strings: TaggedFunctionStrings,
-  values: InlineBlocks,
-  props: Record<any, any> = {},
-): string => {
-  return strings.reduce((prev: string, curr: string, idx: number) => {
-    const value = values[idx];
-    let evaluated = '';
-    if (typeof value === 'function') {
-      evaluated = value(props) ?? '';
-    } else if (typeof value === 'string') {
-      evaluated = value;
-    }
-    return prev.concat(curr, evaluated);
-  }, '');
-};
+
 
 /**
  * Normalizes whitespsace in a string

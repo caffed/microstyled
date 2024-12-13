@@ -1,21 +1,29 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
-
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import {
+  type Callable,
+  type InlineBlocks,
+  type TagFunction,
+  type TaggedFunctionStrings,
+  interpolate,
+  randomString,
+  removeWhitespace,
+  removeComments,
+} from '@caffedpkg/microcore';
 import {
   createCSSString,
   createCSSObject,
   createStyleElement,
-  interpolate,
-  randomString,
-  removeWhitespace,
 } from './StringUtils';
-
 import type {
   CacheContainer,
   GlobalStyleSheetProps,
-  InlineBlocks,
   StyledProps,
-  TagFunction,
-  TaggedFunctionStrings,
   Theme,
 } from './types';
 
@@ -34,27 +42,44 @@ export const ThemeCacheContext = createContext(null);
 export const useThemeCacheContext = () => {
   return useContext(ThemeCacheContext) ?? { container: document.head };
 };
+
+/**
+ * Name: ThemeCacheProviderProps
+ * @interface ThemeCacheProviderProps
+ */
+export interface ThemeCacheProviderProps extends React.PropsWithChildren {
+  componentCssPrefix?: string;
+  globalCssPrefix?: string;
+  logger?: Callable<any[], void>;
+}
 /**
  * ThemeCacheProvider: main entrypoint for context provider
  * @param container either an HTMLElement or Promise returning one
  * @returns ThemeCache Provider Component
  */
 export const ThemeCacheProvider = (cacheContainer: CacheContainer) => {
-  return (props: React.PropsWithChildren) => {
+  return (props: ThemeCacheProviderProps) => {
+    const {
+      componentCssPrefix = 'micro-styled',
+      globalCssPrefix = `${componentCssPrefix}-global`,
+      logger = globalThis.console.warn,
+    } = props;
+
     const [container, setContainer] = useState(document.head);
 
     useEffect(() => {
       const setNewContainer = async () => {
         const originalContainer = container;
         try {
-          const newContainer =
-            typeof cacheContainer === 'function' ? await cacheContainer() : cacheContainer;
+          const newContainer = typeof cacheContainer === 'function' ?
+            await cacheContainer() :
+            cacheContainer;
           if (newContainer && originalContainer) {
             setContainer(newContainer);
             // move stylesheets to specified container
             // cannot use pattern matching in `:not()` in main selector
-            Array.from(document.querySelectorAll('style[id^=micro-styled]'))
-              .filter((el) => !el.id.includes('micro-styled-global'))
+            Array.from(document.querySelectorAll(`style[id^='${componentCssPrefix}']`))
+              .filter((el) => !el.id.includes(globalCssPrefix))
               .forEach((styleSheet: HTMLStyleElement) => {
                 if (!newContainer.querySelector('#' + styleSheet.id)) {
                   newContainer.appendChild(styleSheet);
@@ -62,16 +87,18 @@ export const ThemeCacheProvider = (cacheContainer: CacheContainer) => {
               });
           }
         } catch (err) {
-          console.warn(err);
+          logger(err);
         }
       };
 
-      setNewContainer().catch(console.warn);
+      setNewContainer().catch(logger);
 
       return () => {
-        Array.from(container.querySelectorAll('style[id^=micro-styled]')).forEach(
-          (sheet: HTMLStyleElement) => sheet.remove(),
-        );
+        Array
+          .from(container.querySelectorAll(`style[id^='${componentCssPrefix}']`))
+          .forEach(
+            (sheet: HTMLStyleElement) => sheet.remove(),
+          );
       };
     }, [container]);
 
@@ -125,7 +152,7 @@ export const css = (props: Record<any, any> = {}): TagFunction => {
   return (strings: TemplateStringsArray, ...values: InlineBlocks): string => {
     const { theme } = useThemeContext();
     const themeProps = { ...props, theme };
-    return interpolate(strings, values, themeProps);
+    return removeComments(interpolate(strings, values, themeProps));
   };
 };
 
@@ -135,10 +162,17 @@ export const css = (props: Record<any, any> = {}): TagFunction => {
  * @returns JSX.Element of <style/> for use in App layout
  */
 export const GlobalStyleSheet = (props: GlobalStyleSheetProps) => {
-  const id = randomString(10, 'micro-styled-global-');
+  const {
+    globalCssPrefix = 'micro-styled-global',
+    stylesheet,
+  } = props;
+  const id = randomString(10, {
+    filterRegex: /[0-9]/gm,
+    prefix: globalCssPrefix + '-',
+  });
   return (
     <style key={id} id={id}>
-      {props.stylesheet}
+      {stylesheet}
     </style>
   );
 };
@@ -157,10 +191,13 @@ export const Component = (
   values: InlineBlocks = [],
   selfClosing = false,
 ) => {
-  const className: string = randomString();
+  const className: string = randomString(20, { filterRegex: /[0-9]/gm });
   const component: React.FC = (props: Partial<StyledProps>) => {
     // create replacable prefix instead of hard coded 'micro-styled'
-    const styleElementId = `micro-styled-${className}`;
+    const {
+      componentCssPrefix = 'micro-styled',
+    } = props;
+    const styleElementId = `${componentCssPrefix}-${className}`;
     const config = {
       className,
     };
@@ -168,8 +205,10 @@ export const Component = (
     const { container } = useThemeCacheContext();
     const cssRuleString = createCSSString(
       createCSSObject(
-        removeWhitespace(
-          interpolate(strings, values, theme ? { ...props, config, theme } : { ...props, config }),
+        removeComments(
+          removeWhitespace(
+            interpolate(strings, values, theme ? { ...props, config, theme } : { ...props, config }),
+          )
         ),
       ),
       className,
@@ -178,19 +217,22 @@ export const Component = (
     useEffect(() => {
       if (ref.current) {
         ref.current.classList.add(className);
-        if (!container.querySelector('#' + styleElementId)) {
+        const styleContainer = container.querySelector(`#${styleElementId}`);
+        if (!styleContainer) {
           container.appendChild(createStyleElement(styleElementId, cssRuleString));
+        } else {
+          styleContainer.innerHTML = cssRuleString;
         }
       }
       return () => {
         ref.current?.classList.remove(className);
-        container.querySelector(styleElementId)?.remove();
+        container.querySelector(`#${styleElementId}`)?.remove();
       };
     });
     return selfClosing ? (
-      <Element key={className} {...props} ref={ref} />
+      <Element key={className} ref={ref} {...props} />
     ) : (
-      <Element key={className} {...props} ref={ref}>
+      <Element key={className} ref={ref} {...props}  >
         {props.children}
       </Element>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
-import { randomString } from './StringUtils';
+import { randomString } from '@caffedpkg/microcore';
 import styled, { css, GlobalStyleSheet, ThemeCacheProvider, ThemeProvider } from './MicroStyled';
 
 const renderComponent = (Comp: React.FC, defaultProps = {}) => {

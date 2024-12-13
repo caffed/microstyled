@@ -1,40 +1,35 @@
-[@caffedpkg/microstyled](../README.md) / [Exports](../modules.md) / ThemeCacheProviderProps
+[**@caffedpkg/microstyled**](../README.md)
+
+***
+
+[@caffedpkg/microstyled](../globals.md) / ThemeCacheProviderProps
 
 # Interface: ThemeCacheProviderProps
 
-## Hierarchy
+## Extends
 
-- `Partial`<`React.PropsWithChildren`\>
-
-  ↳ **`ThemeCacheProviderProps`**
-
-## Table of contents
-
-### Properties
-
-- [children](ThemeCacheProviderProps.md#children)
-- [container](ThemeCacheProviderProps.md#container)
+- `Partial`\<`React.PropsWithChildren`\>
 
 ## Properties
 
-### children
+### children?
 
-• `Optional` **children**: `ReactNode`
+> `optional` **children**: `ReactNode`
 
 #### Inherited from
 
-Partial.children
+`Partial.children`
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:800
+node\_modules/@types/react/index.d.ts:800
 
-___
+***
 
 ### container
 
-• **container**: [`CacheContainer`](../modules.md#cachecontainer)
+> **container**: [`CacheContainer`](../type-aliases/CacheContainer.md)
 
 #### Defined in
 
-[src/types.ts:34](https://github.com/caffed/microstyled/blob/bba0823/src/types.ts#L34)
+[src/types.ts:33](https://github.com/caffed/microstyled/blob/0e0d0d91e7aa2e3a4202341d6352feeb008d9de4/src/types.ts#L33)

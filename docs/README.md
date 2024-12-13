@@ -1,7 +1,9 @@
-@caffedpkg/microstyled / [Exports](modules.md)
+**@caffedpkg/microstyled**
+
+***
 
 <div style="width: 100%;" class="heading-container">
-	<img style="width: 100%;" alt="microstyled logo" src="./misc/microstyled.png">
+	<img style="width: 100%;" alt="microstyled logo" src="_media/microstyled.png">
 	<div class="text">
 		<span style="text-align: center; 	font-family: monospace;font-size: 20px;color: grey; margin-top: 24px;">< microstyled /></span><br><br>
 		<span>A small React Component library inspired by<br><a href="https://styled-components.com" target="__blank">styled-components</a> and <a href="https://emotion.sh/docs/styled" alt="">@emotion/styled</a>.</span>
@@ -18,7 +20,7 @@
 
 ## Documentation
 
-- This is a small library so there are only two main sources of documentation, this [README.md](./README.md) and the [Typedoc generated](./docs/modules.md) documentation.
+- This is a small library so there are only two main sources of documentation, this [README.md](_media/README.md) and the [Typedoc generated](./docs/globals.md) documentation.
 
 - If you are familiar with `styled-components` and `@emotion/styled` then this README.md should be sufficient.
 
@@ -30,6 +32,23 @@
 - The main targeted usage is desktop and mobile browsers in NodeJS/NPM based projects.
 
 ## Examples
+### Comments
+
+- Inline comments in CSS are now supported
+
+  ```JSX
+  import microstyled from '@caffedpkg/microstyled';
+
+  const Component = microstyled.div`
+    // line comment
+    /**
+     * block comment
+     */
+    display: /* line-block comments */ flex;
+  `;
+
+  export default Component;
+  ```
 
 ### CSS Styles Support
 
@@ -37,15 +56,14 @@
 
   - Root level key/value pairs can be copied "as is" from normal CSS.
 
- 
   ```JSX
   import microstyled from '@caffedpkg/microstyled';
-  
+
   // Regular key value CSS properties are written normally
   const Parent = microstyled.div`
     background-color: red;
   `;
-  
+
   export default Parent;
   ```
 
@@ -56,7 +74,7 @@
   <style id="micro-styled-randomHash">
     .randomHash { background-color: red; }
   </style>
-  
+
   // component HTML output minus specified props, children etc.
   <div class="randomHash"></div>
   ```
@@ -65,21 +83,20 @@
 
   - The ampersand is used as a placeholder for the component class reference
 
- 
   ```JSX
   import microstyled from '@caffedpkg/microstyled';
-  
+
   const Child = microstyled.div`
     font-size: 24px;
     &:hover {
       font-size: 36px;
     }
   `;
-  
+
   export default Child;
-  
+
   ```
-  
+
   - The resultant output:
 
   ```JSX
@@ -88,7 +105,7 @@
     .randomHash {font-size: 24px; }
     .randomHash:hover { font-size: 36px; }
   </style>
-	
+
   // component HTML output minus specified props, children etc.
   <div class="randomHash"></div>
   ```
@@ -97,7 +114,7 @@
 
   ```JSX
   import microstyled from '@caffedpkg/microstyled';
-	
+
   // Media queries can also be nested inside an elements block.
   // NOTE: Currently, all nested styles must be enclosed in a "& { ... }" block.
   const Cell =  microstyled.div`
@@ -111,9 +128,9 @@
       }
     }
   `;
-	
+
   export default Cell;
-	
+
   ```
 
   - The resultant output:
@@ -331,10 +348,10 @@
 
 - Currently, there is a fixed roadmap for up to version 2.0.0 (see above). This may change at my discretion.
 
-- Please see the [contributing guidelines](./CONTRIBUTING.md) and the [code of conduct](./CODE_OF_CONDUCT.md) for more information regarding submitting feature requests and bugs.
+- Please see the [contributing guidelines](_media/CONTRIBUTING.md) and the [code of conduct](_media/CODE_OF_CONDUCT.md) for more information regarding submitting feature requests and bugs.
 
 ## License
 
 Licensed under the MIT License, Copyright © 2022-present Carlo Mogavero.
 
-See [LICENSE](./LICENSE) for more information.
+See [LICENSE](_media/LICENSE) for more information.

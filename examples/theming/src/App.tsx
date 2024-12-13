@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ThemedComponent from './ThemedComponent';
+import { SmallText, ThemedComponent } from './ThemedComponent';
 import { css, GlobalStyleSheet, ThemeProvider, ThemeCacheProvider } from '@caffedpkg/microstyled';
 
 const theme = {
-  backgroundColor: '#abb912',
-  color: '#3d5849',
+  backgroundColor: '#A59D84',
+  color: '#ECEBDE',
 };
 
 const GlobalStyles = (props: any) => {
@@ -34,6 +34,7 @@ function App() {
             <p>
               Edit <code>src/App.tsx</code> and save to reload.
             </p>
+            <SmallText>(themed with @caffedpkg/microstyled)</SmallText>
             <a
               className="App-link"
               href="https://reactjs.org"

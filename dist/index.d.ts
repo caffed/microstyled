@@ -1,16 +1,29 @@
 import React$1, { CSSProperties } from 'react';
 
+type InlineBlocks<R = any> = Array<string | ((props: any) => R)>;
+type TagFunction<R = any> = (strings: TemplateStringsArray, ...values: InlineBlocks) => R;
+/**
+ * Callable<Parameters, ReturnType>
+ * - Used for defining signatature of function: parameters and return type.
+ * - Use tuple types for variadic signatures
+ *   example: `type funcParams = [arg: string, ...options?: any[]];`
+ *             Callable<funcParams, OtherType>
+ * - Usage:
+ *    type CallableFunction = Callable<null, string>;
+ *    const myFunc : CallableFunction = () : string => {
+ *      return 'string';
+ *    }
+ */
+type Callable<P = any, V = any> = P extends never | null | undefined ? () => V : P extends any[] ? (...args: P) => V : P extends any ? ((arg: P) => V) | ((arg?: P) => V) : unknown;
+
 /**
  * TYPES
  */
 type ContainerElement = HTMLElement | HTMLHeadElement;
 type CacheContainer = (() => Promise<ContainerElement>) | ContainerElement;
 type CSSValue = Record<keyof Styles, string | number>;
-type InlineBlocks = Array<string | ((props: any) => any)>;
 type InlineStyleFunction = <T>(props: T) => string | void;
 type Styles = Record<keyof CSSProperties, string | number>;
-type TaggedFunctionStrings = Readonly<string[]> | TemplateStringsArray;
-type TagFunction = (strings: TemplateStringsArray, ...values: InlineBlocks) => any;
 type Theme = Record<any, any>;
 /**
  * INTERFACES
@@ -21,24 +34,35 @@ interface ParsedCSSResult {
     psuedoClasses: Array<string>;
 }
 interface StyledProps extends Partial<React.PropsWithChildren> {
+    componentCssPrefix?: string;
     style: Styles;
 }
 interface GlobalStyleSheetProps {
+    globalCssPrefix?: string;
     stylesheet: string;
 }
 interface ThemeProviderProps extends Partial<React.PropsWithChildren> {
     theme: Theme;
 }
-interface ThemeCacheProviderProps extends Partial<React.PropsWithChildren> {
+interface ThemeCacheProviderProps$1 extends Partial<React.PropsWithChildren> {
     container: CacheContainer;
 }
 
+/**
+ * Name: ThemeCacheProviderProps
+ * @interface ThemeCacheProviderProps
+ */
+interface ThemeCacheProviderProps extends React$1.PropsWithChildren {
+    componentCssPrefix?: string;
+    globalCssPrefix?: string;
+    logger?: Callable<any[], void>;
+}
 /**
  * ThemeCacheProvider: main entrypoint for context provider
  * @param container either an HTMLElement or Promise returning one
  * @returns ThemeCache Provider Component
  */
-declare const ThemeCacheProvider: (cacheContainer: CacheContainer) => (props: React$1.PropsWithChildren) => JSX.Element;
+declare const ThemeCacheProvider: (cacheContainer: CacheContainer) => (props: ThemeCacheProviderProps) => JSX.Element;
 /**
  * ThemeProvider: main entrypoint for context provider
  * @param theme
@@ -178,14 +202,6 @@ declare const _default: {
 };
 
 /**
- * Random String generator
- * @param length Number: length of the final string
- * @param prefix String prefix
- * @param stripNumeric boolean to remove numbers
- * @returns string
- */
-declare const randomString: (length?: number, prefix?: string, stripNumeric?: boolean) => string;
-/**
  * mediaQueryRegex - matches `@ { ... }`
  */
 declare const mediaQueryRegex: RegExp;
@@ -193,14 +209,6 @@ declare const mediaQueryRegex: RegExp;
  * psuedoClassRegex - matches `& { ... }`
  */
 declare const psuedoClassRegex: RegExp;
-/**
- * interpolate: Tagged string function parser
- * @param strings Tagged Function Strings
- * @param values Tagged Function Values
- * @param props Component props
- * @returns CSS stylesheet string
- */
-declare const interpolate: (strings: TaggedFunctionStrings, values: InlineBlocks, props?: Record<any, any>) => string;
 /**
  * Normalizes whitespsace in a string
  * @param str string
@@ -228,4 +236,4 @@ declare const createCSSString: (obj: ParsedCSSResult, className: string) => stri
  */
 declare const createStyleElement: (id: string, styles: string) => HTMLStyleElement;
 
-export { CSSValue, CacheContainer, ContainerElement, GlobalStyleSheet, GlobalStyleSheetProps, InlineBlocks, InlineStyleFunction, ParsedCSSResult, StyledProps, Styles, TagFunction, TaggedFunctionStrings, Theme, ThemeCacheProvider, ThemeCacheProviderProps, ThemeProvider, ThemeProviderProps, createCSSObject, createCSSString, createStyleElement, css, _default as default, interpolate, mediaQueryRegex, psuedoClassRegex, randomString, removeWhitespace };
+export { CSSValue, CacheContainer, ContainerElement, GlobalStyleSheet, GlobalStyleSheetProps, InlineStyleFunction, ParsedCSSResult, StyledProps, Styles, Theme, ThemeCacheProvider, ThemeCacheProviderProps$1 as ThemeCacheProviderProps, ThemeProvider, ThemeProviderProps, createCSSObject, createCSSString, createStyleElement, css, _default as default, mediaQueryRegex, psuedoClassRegex, removeWhitespace };
